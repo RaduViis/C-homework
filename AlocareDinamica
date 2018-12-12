@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <stdlib.h>
+// -CMMDC se calcleaza cu ajutorul unei functii care primeste ca argumente doua numere intregi (a, b in cazul nostru) P.S: Prbl1-prima liniuta;
+int cmmdc(int a,int b)
+{
+    while(a!=b)
+        if(a>b)
+            a-=b;
+        else
+            b-=a;
+    return a;
+}
+//
+/* -Vectorul de n(dimensiuneVector) elemente se aloca dinamic cu ajutorul unei functii (in cazul nostru AlocareDinamica) care primeste ca argument dimensiunea vectorului (variabila dimensiuneVector)
+si returneaza un pointer la vector(return VectorDinamic) P.S: Prbl1 - a doua liniuta*/
+int AlocareDinamica(int dimensiuneVector ){
+    int* VectorDinamic;
+
+    VectorDinamic = (int*)malloc(dimensiuneVector * sizeof(int));
+    for (int i = 0; i < dimensiuneVector; i++){
+        printf("Introduceti componentele vectorului: VectorDinamic[%d]= ", i);
+        scanf("%d", &VectorDinamic[i]);
+
+}
+    return VectorDinamic;
+}
+//
+/* Cu ajutorul unei alte functii care primeste ca argument  un pointer la vector si dimensiunea acestuia, se parcurge intreg vectorul, se calculeaza cmmdc al elementelor si se
+afiseaza P.S: Pbl1 a 3 a liniuita;
+*/
+void ParcurgereVector(int *PointerLaVector, int dimensiune){
+    int a, b, i;
+    for (int i = 0; i < dimensiune; i++)
+    {
+        printf("Elementul de pe pozitia %d din vector este: %d\n", i, *PointerLaVector);
+        PointerLaVector++;
+    }
+    PointerLaVector = PointerLaVector - dimensiune;
+    for(i = 1; i < dimensiune; i++)
+        if(i == 1)
+            b = cmmdc(PointerLaVector[i-1], PointerLaVector[i]);
+        else
+            b = cmmdc(b, PointerLaVector[i]);
+    printf("CMMDC al vectorului este: %d", b);
+
+}
+
+int main()
+{
+    // Testam CMMDC dintre 2 numere intregi;
+    int w, z;
+    printf("Introduceti cele 2 numere pentru cmmdc: \n");
+    scanf("%d%d", &w, &z);
+    int x;
+    x = cmmdc(w, z);
+    printf("CMMDC dintre cele 2 numere este %d \n", x);
+
+    // Testam daca functia returneaza un pointer la vector, afisand cel de-al doilea element din vector(Problema 1, a doua liniuta);
+    int dimensiuneVector1;
+    printf("Introduceti dimensiunea vectorului: ");
+    scanf("%d", &dimensiuneVector1);
+    int *v = AlocareDinamica(dimensiuneVector1);
+    //
+
+    // Pbl 1 - a 3 a liniuta, parcurgem vectorul si calculcam cmmdc
+    ParcurgereVector(v, dimensiuneVector1);
+    //
+    free(v); // eliberez memoria
+    return 0;
+}
