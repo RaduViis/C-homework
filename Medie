@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int n;
+    float v[101], nrpoz = 0, nrneg = 0, sumapoz = 0, sumaneg = 0;
+    printf("Introduceti dimensiunea sirului de numere: \n");
+    scanf("%d", &n);
+    for(int i = 0; i < n; i++){
+        printf("Introduceti elementul %d = ", i+1);
+        scanf("%f", &v[i]);
+        if(v[i] > 0)
+        {
+            nrpoz++;
+            sumapoz = sumapoz + v[i];
+        }
+        if(v[i] < 0)
+        {
+            nrneg++;
+            sumaneg = sumaneg + v[i];
+        }
+        }
+    float MedieAritmeticapoz, MedieAritmeticaneg;
+    if(nrpoz == n){
+        MedieAritmeticapoz = sumapoz/nrpoz;
+        printf("Toate numerele sunt pozitive iar media lor aritmetica este de %f \n", MedieAritmeticapoz);
+    }
+    else
+        if(nrneg == n){
+            MedieAritmeticaneg = sumaneg/n;
+            printf("Toate numerele sunt negative iar media lor aritmetica este de %f \n", MedieAritmeticaneg);
+        }
+        else
+            if(nrneg!=n && nrpoz!=n)
+        {
+            MedieAritmeticapoz = sumapoz/nrpoz;
+            printf("Media aritmetica a numerelor pozitive este de: %f \n", MedieAritmeticapoz);
+            MedieAritmeticaneg = sumaneg/nrneg;
+            printf("Media aritmetica a numerelor negative este de: %f \n", MedieAritmeticaneg);
+
+        }
+    return 0;
+}
