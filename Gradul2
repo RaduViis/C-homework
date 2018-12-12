@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+int main()
+{
+    double a, b, c, delta, solutie1, solutie2, parteReala, parteImaginara;
+
+    printf("Introduceti coeficientii pentru a, b si c: ");
+    scanf("%lf %lf %lf",&a, &b, &c);
+    if(a != 0){
+    delta = b*b-4*a*c;
+
+    if (delta > 0)
+    {
+        solutie1 = (-b+sqrt(delta))/(2*a);
+        solutie2 = (-b-sqrt(delta))/(2*a);
+
+        printf("solutie1 = %.2lf si solutie2 = %.2lf", solutie1, solutie2);
+    }
+
+    else if (delta == 0)
+    {
+        delta = solutie2 = -b/(2*a);
+
+        printf("solutie1 = solutie2 = %.2lf;", solutie1);
+    }
+
+    else
+    {
+        parteReala = -b/(2*a);
+        parteImaginara = sqrt(-delta)/(2*a);
+        printf("solutie1 = %.2lf+%.2lfi si solutie2 = %.2f-%.2fi", parteReala, parteImaginara, parteReala, parteImaginara);
+    }
+    }
+    else
+        if(a == 0)
+            printf("Ecuatia nu este de gradul 2");
+    return 0;
+}
